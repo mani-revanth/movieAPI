@@ -1,25 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import SignIn from './signin';
+import SignUp from './signup';
+import Home from './home';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
+//import {Switch} from 'react-router';
+//import { Switch } from '@mui/material';
+//import { Login } from '@mui/icons-material';
+import ProtectedRoutes from './protectedRoutes';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<SignIn/>}/>
+        <Route path='/signUp' element={<SignUp/>}/>
+        <Route path='/home/*' element={<ProtectedRoutes><Home/></ProtectedRoutes>}/>
+      </Routes>
+    </Router>
   );
 }
 
-export default App;
